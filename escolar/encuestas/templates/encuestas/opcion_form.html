@@ -1,0 +1,17 @@
+{% extends "base_menu.html" %}
+
+{% block content %}
+  <h1>Modificación de Opción</h1>
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+    {{ form.as_table }}
+    </table>
+    <div>
+        <input type="submit" value="Guardar Opción" class='btn btn-info'>&nbsp;
+        <input type="submit" class='btn btn-danger'
+            onclick="window.location='{% url 'encuestas:index_opcion' %}' ; return false;"
+            value="Cancelar">
+    </div>
+  </form>
+{% endblock %}

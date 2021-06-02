@@ -1,0 +1,14 @@
+{% extends "base_menu.html" %}
+{% block content %}
+<h1>Eliminación de Opción</h1>
+<p>¿Estás seguro de querer eliminar la opción: <strong>{{ opcion }}</strong> ?
+</p>
+<p>NOTA: Pertenece a la pregunta <strong>{{opcion.pregunta.texto_pregunta}}</strong></p>
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Sí, elimínala.">
+  <input type="button"
+     onclick="window.location='{% url 'encuestas:index_opcion' %}' ; return false;"
+     value="No, mejor no">
+</form>
+{% endblock %}

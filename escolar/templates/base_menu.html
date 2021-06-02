@@ -1,0 +1,26 @@
+{% extends "base_bootstrap.html" %}
+{% block navbar %}
+
+<nav class ="navbar navbar-default navbar-inverse">
+    <div class="countier-fluid">
+        <div class="navbar.header">
+            <a class="navbar/brand" href="{% url 'escolar:index' %}">Encuestas Diana Chavez</a>
+        <div/>
+
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'logout' %}?next={% 'escolar:index' %}">{{user.get_username}}
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'login' %}?next={{request.path}}">Login</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+{% endblock %}
+
+{% block textopie %}
+{% endblock %}

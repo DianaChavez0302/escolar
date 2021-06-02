@@ -1,0 +1,15 @@
+{% extends "base_bootstrap.html" %}
+
+{% block content %}
+<h1>Login Encuestas Diana Chavez</h1>
+{% if from.errors %}
+    <p> Su usuario y/o clave no concuerdan. Favor de intentar nuevamente </p>
+{% endif %}
+
+<from method= "post" action="{% url 'login' %}">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" class= "btn btn-primary" value="login" />
+<input type="hidden" name="next" value="{{ next}}" />
+</from>
+{% endblock %}

@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <meta charseyt="utf-8">
+        <title>Resultados de la carrera {{carrera.clave}}</title>
+    </head>
+    <body>
+        <div>
+            <h2>{{carrera}}</h2>
+            <ul>
+                {% for opcion in carrera.materia_set.ll %}
+                    <li>{{materia.clave_materia}} -- {{materia.num_registros}}
+                        voto{{materia.num_registros |pluralize}}</li>
+                {% endfor %}
+            </ul>
+            <a href ="{%url 'escolar:detalle' carrera.clave %}">Registrar nuevamente </a>
+        </div>
+    <body>
+</html>

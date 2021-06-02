@@ -1,0 +1,13 @@
+{% extends "base_menu.html" %}
+{% block title %}
+Detalle de la materia {{materia.clave}}
+{% endblock %}
+
+{% block content %}
+<h2>Detalles de la materia {{materia.clave}}</h2>
+<p>Texto de la materia: <strong>{{materia.clave_materia}}</strong></p>
+<p>Carrera asociada: <strong>{{materia.carrera.clave_carrera}}</strong></p>
+<p>Número de registro: <strong>{{materia.num_registro}}</strong></p>
+<p>&nbsp;</p>
+<p><a href="{% url 'escolar:index_materia' %}">Regresar a lista de materia</a></p>
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base_menu.html" %}
+{% block title %}
+Lista de Materias Disponibles
+{% endblock %}
+
+{% block content %}
+   {% if object_list %}
+	    <h1>Opciones de Respuesta Disponibles:</h1>
+	    <ul>
+	    {% for opcion in object_list  %}
+	        <li>
+	            <a href="{% url 'escolar:detalle_materia' materia.clave %}" title="{{materia.carrera.clave_carrera}}">
+	            {{ materia.clave_materia }}</a>
+	            {% if materia.carrera.creador == user %}
+	              &nbsp; (
+	              <a href="{% url 'escolar:editar_materia' materia.clave %}">Editar Materia</a>&nbsp;
+	              / <a href="{% url 'escolar:eliminar_materia' materia.clave %}">Eliminar Materia</a> )
+	            {% endif %}
+	       </li>
+	    {% endfor %}
+	    </ul>
+	    <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; Primera</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Previa</a>
+                {% endif %}
+
+                <span class="current">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+	    {% if user.is_authenticated %}
+	        <p><a href="{% url 'escolar:crea_materia' %}">Crear nueva materia</a></p>
+	    {% endif %}
+	{% else %}
+		<p>No hay materias disponibles.</p>
+	{% endif %}
+	<p><a href="{% url 'escolar:index' %}">Ir a lista de carreras</a></p>
+
+{% endblock %}

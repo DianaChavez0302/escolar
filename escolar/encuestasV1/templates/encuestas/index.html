@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lista de Preguntas Disponibles</title>
+    </head>
+    <body>
+        <div>
+            {% if lista_preguntas_recientes %}
+                <h1>Preguntas Disponibles:</h1>
+                <ul>
+                {% for pregunta in lista_preguntas_recientes %}
+                    <li><a href="{% url 'encuestas:detalle' pregunta.id %}">{{ pregunta.texto_pregunta}}</a></li>
+                {% endfor %}
+                </ul>
+                {% else %}
+                <p>No hay preguntas disponibles.</p>
+            {% endif %}
+        </div>
+    </body>
+</html>

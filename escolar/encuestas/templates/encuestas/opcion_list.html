@@ -1,0 +1,48 @@
+{% extends "base_menu.html" %}
+{% block title %}
+Lista de Opciones Disponibles
+{% endblock %}
+
+{% block content %}
+   {% if object_list %}
+	    <h1>Opciones de Respuesta Disponibles:</h1>
+	    <ul>
+	    {% for opcion in object_list  %}
+	        <li>
+	            <a href="{% url 'encuestas:detalle_opcion' opcion.id %}" title="{{opcion.pregunta.texto_pregunta}}">
+	            {{ opcion.texto_opcion }}</a>
+	            {% if opcion.pregunta.creador == user %}
+	              &nbsp; (
+	              <a href="{% url 'encuestas:editar_opcion' opcion.id %}">Editar Opción</a>&nbsp;
+	              / <a href="{% url 'encuestas:eliminar_opcion' opcion.id %}">Eliminar Opción</a> )
+	            {% endif %}
+	       </li>
+	    {% endfor %}
+	    </ul>
+	    <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; Primera</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Previa</a>
+                {% endif %}
+
+                <span class="current">
+                    Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+	    {% if user.is_authenticated %}
+	        <p><a href="{% url 'encuestas:crea_opcion' %}">Crear nueva opción</a></p>
+	    {% endif %}
+	{% else %}
+		<p>No hay opciones disponibles.</p>
+	{% endif %}
+	<p><a href="{% url 'encuestas:index' %}">Ir a lista de preguntas</a></p>
+
+{% endblock %}
+

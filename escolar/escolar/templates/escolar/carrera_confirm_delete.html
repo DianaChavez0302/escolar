@@ -1,0 +1,12 @@
+{% extends "base_bootstrap.html" %}
+{% block content %}
+  <h1>Eliminacion de carrera</h1>
+  <p>Estas seguro de querer eliminar la carrera: <stronge>{{ carrera }}</strong>? </p>
+  <form action="" method="post">
+    {% csrf_token %}
+        <input type="submit" value="Si, eliminala.">
+        <input type="button"
+            onclick="window.location='{% url 'carrera:index' %}' ; return false;"
+            value="No, mejor no">
+  </form>
+{% endblock %}

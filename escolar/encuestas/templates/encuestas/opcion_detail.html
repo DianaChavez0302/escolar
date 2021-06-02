@@ -1,0 +1,13 @@
+{% extends "base_menu.html" %}
+{% block title %}
+Detalle de la opción {{opcion.id}}
+{% endblock %}
+
+{% block content %}
+<h2>Detalles de la opción {{opcion.id}}</h2>
+<p>Texto de la opción: <strong>{{opcion.texto_opcion}}</strong></p>
+<p>Pregunta asociada: <strong>{{opcion.pregunta.texto_pregunta}}</strong></p>
+<p>Número de votos: <strong>{{opcion.num_votos}}</strong></p>
+<p>&nbsp;</p>
+<p><a href="{% url 'encuestas:index_opcion' %}">Regresar a lista de opciones</a></p>
+{% endblock %}

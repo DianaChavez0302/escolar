@@ -1,0 +1,14 @@
+{% extends "base_menu.html" %}
+{% block content %}
+<h1>Eliminación de Materia</h1>
+<p>¿Estás seguro de querer eliminar la Materia: <strong>{{ materia }}</strong> ?
+</p>
+<p>NOTA: Pertenece a la carrera <strong>{{materia.carrera.clave_carrera}}</strong></p>
+<form action="" method="POST">
+  {% csrf_token %}
+  <input type="submit" value="Sí, elimínala.">
+  <input type="button"
+     onclick="window.location='{% url 'escolar:index_materia' %}' ; return false;"
+     value="No, mejor no">
+</form>
+{% endblock %}

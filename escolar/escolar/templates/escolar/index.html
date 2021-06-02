@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Lista de Carreras Disponibles</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'escolar/estilos.css' %}">
+    </head>
+    <body>
+        <div>
+            {% if lista_carreras_recientes %}
+                <h1>Carreras Disponibles:</h1>
+                <ul>
+                {% for carrera in lista_carreras_recientes %}
+                    <li><a href="{% url 'escolar:detalle' carrera.id %}">{{ carrera.nombre_carrera}}</a></li>
+                {% endfor %}
+                </ul>
+                {% else %}
+                <p>No hay carreras disponibles.</p>
+            {% endif %}
+        </div>
+    </body>
+</html>

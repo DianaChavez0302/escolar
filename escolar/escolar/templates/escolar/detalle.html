@@ -1,0 +1,24 @@
+   <html>
+    <head>
+    <meta charset="utf-8">
+    <title>Detalle de la Carrera {{carrera.id}}</title>
+ </head>
+ <body>
+         <div>
+             <h2>{{pr}}</h2>
+             {% if mensaje_error %}
+                 <p><strong>{{ mensaje_error}}</strong></p>
+            {% endif %}
+             <form action="{% url 'escolar:registro' carrera.id %}" method="post">
+                {% csrf_token %}
+                {% for materia in carrera.materia_set.all %}
+                    <input type="radio" name="materia" id="materia{{forloop.counter}}"
+                        value="{{ materia.id}}">
+                    <label for "materia{{forloop.counter}}">{{ materia.nombre_materia}}</label>
+                    <br>
+                {% endfor%}
+                <inpt type="submit" value="Registro">
+            </form>
+        </div>
+</body>
+</head>
